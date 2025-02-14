@@ -161,5 +161,39 @@ public class RacunController : ControllerBase
             return BadRequest("Greska " + e.Message);
         }
     }
+
+    [HttpPut]
+    [Route("changeValuta")]
+    public async Task<ActionResult> promeniValutu([FromBody] string PinProvera, string valuta)
+    {
+        try
+        {
+            var user = await Context.Korisnici.Include(r=>r.Racun).FirstOrDefaultAsync(r=> r.pin == PinProvera);
+            if(user == null)
+                return BadRequest("Racun ne postoji");
+
+            if(user.Racun?.valuta == valuta)
+                return BadRequest("Racun je vec u toj valuti");
+            decimal kurs;
+            if(user.Racun?.valuta == "RSD")
+                kurs = 0.0085M;
+            else
+                kurs = 117.5M;
+            
+            if(user.Racun == null)
+                return BadRequest("Racun ne postoji.");
+            user.Racun.valuta = valuta;
+            user.Racun.sredstva *= kurs;
+
+            await Context.SaveChangesAsync();
+            return Ok($"Nova valuta {user.Racun.valuta} , stanje: {user.Racun.sredstva}");
+
+        }
+        catch (Exception e)
+        {
+            return BadRequest("Greska " + e);
+            
+        }
+    }
 }
 

@@ -4640,11 +4640,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dimic\\Downloads\\WebTemplate\\mbanking\\WebTemplate.csproj",
+      "projectUniqueName": "C:\\Users\\dimic\\Downloads\\BankingProject\\mbanking\\WebTemplate.csproj",
       "projectName": "WebTemplate",
-      "projectPath": "C:\\Users\\dimic\\Downloads\\WebTemplate\\mbanking\\WebTemplate.csproj",
+      "projectPath": "C:\\Users\\dimic\\Downloads\\BankingProject\\mbanking\\WebTemplate.csproj",
       "packagesPath": "C:\\Users\\dimic\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dimic\\Downloads\\WebTemplate\\mbanking\\obj\\",
+      "outputPath": "C:\\Users\\dimic\\Downloads\\BankingProject\\mbanking\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dimic\\AppData\\Roaming\\NuGet\\NuGet.Config",

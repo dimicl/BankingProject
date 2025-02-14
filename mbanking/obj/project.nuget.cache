@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eOemI4dOtvs=",
+  "dgSpecHash": "rU8mcFXB/KY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\dimic\\Downloads\\WebTemplate\\mbanking\\WebTemplate.csproj",
+  "projectFilePath": "C:\\Users\\dimic\\Downloads\\BankingProject\\mbanking\\WebTemplate.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dimic\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\dimic\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
