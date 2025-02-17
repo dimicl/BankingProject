@@ -1,8 +1,11 @@
-<div class="container">
-    <div class="login-box">
-      <h2>Login</h2>
+<div class="d-flex flex-lg-row flex-sm-column w-100" style="background-image: url('background.svg'); background-repeat: no-repeat; 
+background-size: cover;
+ min-height: 100vh">
+<div class="container d-flex flex-column justify-content-end align-items-center m-auto">
+    <div class="login-box d-flex flex-column justify-content-center align-items-center w-100">
+      <h2 class="lato-light">Enter your pin.</h2>
       <form (ngSubmit)="onSubmit()">
-        <div class="pin-container">
+        <div class="d-flex justify-content-center gap-2 mt-2 ">
           @for (item of pin; track $index) {
             <input
               #pinInputs
@@ -16,12 +19,18 @@
             />
           }
         </div>
-        <button type="submit" class="btn btn-success">Submit</button>
+        <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
-      <p class="signup-link">
+      <p class="signup-link ">
         Don't have an account?
         <a routerLink="/register" style="text-decoration: none;">Sign up here</a>
       </p>
     </div>
   </div>
+  <div class="w-50 d-none d-lg-flex justify-content-center align-items-center">
+    <img src="login.svg" width="600" height="600" alt="">
+  </div>
+</div>
+ 
   

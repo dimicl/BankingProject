@@ -42,7 +42,7 @@ public class AuthController : ControllerBase
 
             Context.Korisnici.Add(korisnik);
             await Context.SaveChangesAsync();
-            return Ok(new {Message = "Registracija uspesna.", PinKod=pinKod});
+            return Ok(new {Message = "Registracija uspesna.", PinKod=pinKod, racun = new { racun.brojRacuna, racun.sredstva, racun.valuta }});
             
         }
         catch (Exception e)
@@ -57,11 +57,11 @@ public class AuthController : ControllerBase
     {
         try
         {
-            var korisnik = await Context.Korisnici.FirstOrDefaultAsync(k=> k.pin == request.Pin);
+            var korisnik = await Context.Korisnici.Include(k=>k.Racun).FirstOrDefaultAsync(k=> k.pin == request.Pin);
             if(korisnik == null)
                 return Unauthorized(new { message = "Pogresan pin" });
             
-            return Ok(new { message  = "Korisnik " + korisnik.ime + " sa pinom " + korisnik.pin + " se uspesno ulogovao", korisnik = new {korisnik.ime, korisnik.prezime, korisnik.pin} });
+            return Ok(new { message  = "Korisnik " + korisnik.ime + " sa pinom " + korisnik.pin + " se uspesno ulogovao", korisnik = new {korisnik.ime, korisnik.prezime, korisnik.pin} , racun = new { korisnik.Racun?.brojRacuna, korisnik.Racun?.sredstva, korisnik.Racun?.valuta} });
         }
         catch (Exception e)
         {
