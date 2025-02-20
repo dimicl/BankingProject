@@ -6,6 +6,7 @@ import { ProfileComponent } from '../components/profile/profile.component';
 import { TransactionsComponent } from '../components/transactions/transactions.component';
 import { authGuard } from '../components/guard/auth.guard';
 import { PayComponent } from '../components/pay/pay.component';
+import { AdminComponent } from '../components/admin/admin.component';
 
 export const routes: Routes = [
     {
@@ -42,6 +43,10 @@ export const routes: Routes = [
             {
                 path: 'pay',
                 component: PayComponent
+            },
+            {
+                path: 'admin',
+                component: AdminComponent
             }
         ]
     }
