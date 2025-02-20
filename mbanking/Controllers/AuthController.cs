@@ -61,7 +61,7 @@ public class AuthController : ControllerBase
             if(korisnik == null)
                 return Unauthorized(new { message = "Pogresan pin" });
             
-            return Ok(new { message  = "Korisnik " + korisnik.ime + " sa pinom " + korisnik.pin + " se uspesno ulogovao", korisnik = new {korisnik.ime, korisnik.prezime, korisnik.pin} , racun = new { korisnik.Racun?.brojRacuna, korisnik.Racun?.sredstva, korisnik.Racun?.valuta} });
+            return Ok(new { message  = "Korisnik " + korisnik.ime + " sa pinom " + korisnik.pin + " se uspesno ulogovao", korisnik = new {korisnik.ime, korisnik.prezime, korisnik.pin, korisnik.email} , racun = new { korisnik.Racun?.brojRacuna, korisnik.Racun?.sredstva, korisnik.Racun?.valuta} });
         }
         catch (Exception e)
         {

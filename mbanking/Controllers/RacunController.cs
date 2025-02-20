@@ -21,7 +21,7 @@ public class RacunController : ControllerBase
             if(k == null)
                 return BadRequest("Racun ne postoji.");
             
-            return Ok(k.Racun?.sredstva);
+            return Ok(new { k.Racun?.sredstva });
 
         }
         catch (Exception e)
@@ -154,7 +154,7 @@ public class RacunController : ControllerBase
             if(user == null)
                 return BadRequest("Racun ne postoji.");
             
-            return Ok(user.Racun?.Transakcije);
+            return Ok(new { message = "Transakacije od " + user.ime,  user.Racun?.Transakcije  });
         }
         catch (Exception e)
         {

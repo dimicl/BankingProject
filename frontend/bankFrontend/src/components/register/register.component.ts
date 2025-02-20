@@ -1,6 +1,6 @@
 import { NgClass, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
@@ -18,6 +18,8 @@ export class RegisterComponent {
       pin: "",
       isTerms: false
     }
+    modalMessage: string = "";
+    @ViewChild('exampleModal') modal!: ElementRef;
 
     http = inject(HttpClient);
     router = inject(Router);
@@ -35,15 +37,30 @@ export class RegisterComponent {
         if(res.pinKod)
         {
           this.korisnik.pin = res.pinKod;
-          console.log(`Vas pin je ${this.korisnik.pin}`);
-          alert(res.message);
+          this.modalMessage = `Vas pin je ${this.korisnik.pin}`;
+          this.showModal();
+
         }
         else
           console.log("Greskica");
       })
+    }
+
+
+    showModal() {
+      const modalElement = this.modal.nativeElement;
+      modalElement.classList.add('show');
+      modalElement.style.display = 'block';
+      document.body.classList.add('modal-open');
+    }
+
+    closeModal() {
+      const modalElement = this.modal.nativeElement;
+      modalElement.classList.remove('show');
+      modalElement.style.display = 'none';
+      document.body.classList.remove('modal-open');
 
       this.router.navigateByUrl("login");
-
-      this.reset();
     }
+
 }

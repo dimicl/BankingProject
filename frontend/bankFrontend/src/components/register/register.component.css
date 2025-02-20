@@ -5,3 +5,25 @@
     width: 50%;
     height: 50%;
 }
+
+.typewriter {
+    overflow: hidden;
+    border-right: .15em solid black;
+    white-space: nowrap;
+    margin: 0 auto; 
+    transform: translateY(-50%);
+    animation: 
+      typing 2s steps(40) 1s 1 normal both,
+      blinkTextCursor 500ms steps(44) infinite normal;
+    }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  @keyframes blinkTextCursor{
+    from{border-right-color: rgba(255,255,255,.75);}
+    to{border-right-color: transparent;}
+  }
+  

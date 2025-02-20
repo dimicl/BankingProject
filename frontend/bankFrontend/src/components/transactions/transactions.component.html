@@ -1,1 +1,21 @@
-<p>transactions works!</p>
+    <div class="container-fluid d-flex flex-column justify-content-center align-items-center gap-5 col-lg-8">
+        <span class="display-5">List of transactions.</span>
+        <div class="col-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                <td><strong>Iznos</strong></td>
+                <td><strong>Datum</strong></td>
+                <td><strong>Tip</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of transakcije">
+                    <td> {{ item.iznos }} {{this.valuta}} </td>
+                    <td> {{ item.datum | date:'medium' }} </td>
+                    <td> {{ item.tip  }} </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>

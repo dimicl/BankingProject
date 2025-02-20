@@ -22,6 +22,7 @@ export class LoginComponent {
   user = {
     ime: " ",
     prezime: " ",
+    email: " ",
     pin: " "
   };
 
@@ -82,19 +83,20 @@ export class LoginComponent {
         if (res.korisnik) {
           this.user.ime = res.korisnik.ime;
           this.user.prezime = res.korisnik.prezime;
-          
+          this.user.email = res.korisnik.email;
           this.racun.brojR = res.racun.brojRacuna;
           this.racun.sredstva = res.racun.sredstva;
           this.racun.valuta = res.racun.valuta;
-
+          var datum = new Date().toLocaleString();
           console.log("Uspešan login:", this.user);
           localStorage.setItem("ime", this.user.ime);
           localStorage.setItem("prezime", this.user.prezime);
+          localStorage.setItem("email", this.user.email);
           localStorage.setItem("pin", this.user.pin);
           localStorage.setItem("brojR", this.racun.brojR);
           localStorage.setItem("sredstva", this.racun.sredstva.toString());
           localStorage.setItem("valuta", this.racun.valuta);
-
+          localStorage.setItem("prijava", datum);
 
           this.router.navigateByUrl("dashboard");
         } 
