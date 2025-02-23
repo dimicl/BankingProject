@@ -1,23 +1,21 @@
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center gap-5 py-4" style="border: 1px solid black; min-height: 85vh;">
     
-    <!-- Gornji deo: Profilna slika + Info -->
     <div class="row w-100 d-flex flex-lg-row flex-column align-items-center justify-content-center gap-5">
         <div class="col-lg-2 col-md-6 col-sm-12 d-flex justify-content-center">
             <img src="profile.svg" class="img-fluid" width="150" height="150" alt="">
         </div>
-        <div class="col-lg-2 col-md-6 col-sm-12 d-flex flex-column align-items-start text-left">
-            <div>
+        <div class="col-lg-2 col-md-6 col-sm-12 d-flex flex-column align-items-start">
+            <div class="col-12 text-center">
                 <p style="color: #374151;"><strong>Available</strong></p>
                 <p>{{this.racun.sredstva}} {{this.racun.valuta}}</p>
             </div>
-            <div>
+            <div class="col-12 text-center">
                 <p><strong>Last log in</strong></p>
                 <p>{{this.user.prijava}}</p>
             </div>
         </div>
     </div>
 
-    <!-- Drugi deo: Ime i prezime -->
     <div class="row w-100 d-flex flex-lg-row flex-column align-items-center justify-content-center gap-4">
         <div class="col-lg-2 col-md-6 col-sm-12">
             <p><strong>First Name</strong></p>

@@ -1,21 +1,23 @@
-    <div class="container-fluid d-flex flex-column justify-content-center align-items-center gap-5 col-lg-8">
+    <div class="container-fluid d-flex flex-column justify-content-center align-items-center gap-5 col-lg-6 col-sm-12">
         <span class="display-5">List of transactions.</span>
+        <div class="row justify-content-center">
         <div class="col-12">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                <td><strong>Iznos</strong></td>
-                <td><strong>Datum</strong></td>
-                <td><strong>Tip</strong></td>
-                </tr>
-            </thead>
+        <table class="table">
+        
             <tbody>
                 <tr *ngFor="let item of transakcije">
-                    <td> {{ item.iznos }} {{this.valuta}} </td>
+                    <td [ngClass]="{'text-danger' : item.tip == 'Poslato', 'text-success' : item.tip == 'Primljeno'}"> 
+                        <span *ngIf="item.tip == 'Poslato'"></span> 
+                        <span *ngIf="item.tip == 'Primljeno'">+</span> 
+                        {{item.iznos}} {{this.valuta}} 
+                    
+                    </td>
                     <td> {{ item.datum | date:'medium' }} </td>
                     <td> {{ item.tip  }} </td>
+                    <td> {{ item.tekuciReceiver}}</td>
                 </tr>
             </tbody>
         </table>
+        </div>
         </div>
     </div>

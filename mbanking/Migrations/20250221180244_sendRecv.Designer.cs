@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebTemplate.Models;
 
@@ -11,9 +12,11 @@ using WebTemplate.Models;
 namespace WebTemplate.Migrations
 {
     [DbContext(typeof(BankaContext))]
-    partial class BankaContextModelSnapshot : ModelSnapshot
+    [Migration("20250221180244_sendRecv")]
+    partial class sendRecv
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,7 +60,7 @@ namespace WebTemplate.Migrations
                         .IsUnique()
                         .HasFilter("[RacunId] IS NOT NULL");
 
-                    b.ToTable("Korisnici", (string)null);
+                    b.ToTable("Korisnici");
                 });
 
             modelBuilder.Entity("WebTemplate.Models.Racun", b =>
@@ -80,7 +83,7 @@ namespace WebTemplate.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Racuni", (string)null);
+                    b.ToTable("Racuni");
                 });
 
             modelBuilder.Entity("WebTemplate.Models.Transakcija", b =>
@@ -114,7 +117,7 @@ namespace WebTemplate.Migrations
 
                     b.HasIndex("Racunid");
 
-                    b.ToTable("Transakcije", (string)null);
+                    b.ToTable("Transakcije");
                 });
 
             modelBuilder.Entity("WebTemplate.Models.Korisnik", b =>

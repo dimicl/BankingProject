@@ -32,7 +32,8 @@ export class RegisterComponent {
     }
     onSubmit()
     {
-      console.log(this.korisnik);
+      debugger;
+      console.log("Desila se registracija")
       this.http.post("https://localhost:7080/Auth/register", this.korisnik).subscribe((res:any)=>{
         if(res.pinKod)
         {

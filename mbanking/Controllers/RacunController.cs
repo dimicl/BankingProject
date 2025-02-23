@@ -52,8 +52,7 @@ public class RacunController : ControllerBase
                 iznos = request.Iznos,
                 tip = "Uplata",
                 datum = DateTime.Now,
-                Racun = user.Racun,
-                RacunId = user.Racun.id
+                Racun = user.Racun
             };
             
             Context.Transakcije.Add(transakcija);
@@ -66,82 +65,120 @@ public class RacunController : ControllerBase
         }
     }
 
-    [HttpPut]
-    [Route("isplata")]
-    public async Task<ActionResult> isplataNovca([FromBody] TransakcijaRequest request)
+    
+    
+ [HttpPut]
+[Route("transfer")]
+public async Task<ActionResult> transferNovca([FromBody] TransferRequest request)
+{
+    try
+    {
+        var sender = await Context.Korisnici.Include(k => k.Racun).ThenInclude(r => r.Transakcije)
+            .FirstOrDefaultAsync(r => r.Racun.brojRacuna == request.SenderAccount);
+        
+        var receiver = await Context.Korisnici.Include(k => k.Racun).ThenInclude(r => r.Transakcije)
+            .FirstOrDefaultAsync(r => r.Racun.brojRacuna == request.ReceiverAccount);
+
+        if (sender == null || receiver == null)
+            return BadRequest("Greska, ne postoji.");
+
+        if (sender.Racun?.sredstva <= 0 || sender.Racun?.sredstva < request.Iznos)
+            return BadRequest("Nemate dovoljno sredstava za transfer");
+
+        if (sender.Racun?.Transakcije == null)
+            sender.Racun.Transakcije = new List<Transakcija>();
+
+        if (receiver.Racun?.Transakcije == null)
+            receiver.Racun.Transakcije = new List<Transakcija>();
+
+        sender.Racun.sredstva -= request.Iznos;
+        receiver.Racun.sredstva += request.Iznos;
+
+        var transakcijaSender = new Transakcija
+        {
+            iznos = request.Iznos,
+            tip = "Poslato",
+            datum = DateTime.Now,
+            TekuciSender = sender.Racun?.brojRacuna,
+            TekuciReceiver = receiver.Racun?.brojRacuna,
+            Racun = sender.Racun 
+        };
+
+        sender.Racun.Transakcije.Add(transakcijaSender);
+
+        var transakcijaReceiver = new Transakcija
+        {
+            iznos = request.Iznos,
+            tip = "Primljeno",
+            datum = DateTime.Now,
+            TekuciSender = sender.Racun?.brojRacuna,
+            TekuciReceiver = receiver.Racun?.brojRacuna,
+            Racun = receiver.Racun 
+        };
+
+        receiver.Racun.Transakcije.Add(transakcijaReceiver);
+
+        Context.Transakcije.Add(transakcijaSender);
+        Context.Transakcije.Add(transakcijaReceiver);
+
+        Context.Korisnici.Update(sender);  
+        Context.Korisnici.Update(receiver); 
+
+        await Context.SaveChangesAsync();
+
+        return Ok(new { transakcijaSender, transakcijaReceiver });
+    }
+    catch (Exception e)
+    {
+        return BadRequest("Greska: " + e.Message);
+    }
+}
+
+
+
+
+    [HttpPost]
+    [Route("getReceiver")]
+    public async Task<ActionResult> getRecv([FromBody] AccountRequest request)
     {
         try
         {
-            var user = await Context.Korisnici.Include(k=>k.Racun).FirstOrDefaultAsync(r=>r.pin == request.Pin);
-            if(user ==  null)
-                return BadRequest("User ne postoji.");
+            var receiver = await Context.Korisnici.Include(k=>k.Racun).FirstOrDefaultAsync(l=> l.Racun.brojRacuna == request.tekuciReceiver);
+
+            if(receiver == null)
+                return BadRequest("Korisnik ne postoji.");
             
-            if(request.Iznos <= 0)
-                return BadRequest("Iznos mora biti validan");
+            return Ok(new { receiver });
 
-            if(user.Racun != null)
-                user.Racun.sredstva = (user.Racun.sredstva) - request.Iznos;
-
-            var transakcija = new Transakcija
-            {
-                iznos = request.Iznos,
-                tip = "Isplata",
-                datum = DateTime.Now,
-                Racun = user.Racun,
-                RacunId = user.Racun.id
-            };
-            Context.Transakcije.Add(transakcija);
-            await Context.SaveChangesAsync();
-
-            return Ok(user.Racun?.sredstva);
         }
         catch (Exception e)
         {
             
-            return BadRequest("Greska " + e.Message);
+            return BadRequest();
         }
     }
-    
-    [HttpPut]
-    [Route("transfer")]
-    public async Task<ActionResult> transferNovca([FromBody] TransferRequest request)
+
+    [HttpPost]
+    [Route("getSender")]
+    public async Task<ActionResult> getSender([FromBody] AccountRequest request)
     {
         try
         {
-           var sender = await Context.Korisnici.Include(k=>k.Racun).FirstOrDefaultAsync(r=>r.pin == request.SenderPin);
-           var receiver = await Context.Korisnici.Include(k=>k.Racun).FirstOrDefaultAsync(r=>r.pin == request.ReceiverPin);
+            var sender = await Context.Korisnici.Include(k=>k.Racun).FirstOrDefaultAsync(l=> l.Racun.brojRacuna == request.tekuciReceiver);
 
-           if(sender == null || receiver == null)
-                return BadRequest("Greska, ne postoji.");
-
-            if(sender.Racun?.sredstva <= 0)
-                return BadRequest("Nemate dovoljno sredstava za transfer");
-
-            if(sender.Racun != null && receiver.Racun != null && sender.Racun.sredstva > 0)
-            {   
-                sender.Racun.sredstva -= request.Iznos;
-                receiver.Racun.sredstva += request.Iznos;
-            }
-            var transakcija = new Transakcija
-            {
-                iznos = request.Iznos,
-                tip = "Transfer",
-                datum = DateTime.Now,
-                Racun = sender.Racun,
-                RacunId = sender.Racun.id
-            };
-            Context.Transakcije.Add(transakcija);
-            await Context.SaveChangesAsync();
-
-            return Ok("Transfer novca obavljen.");
+            if(sender == null)
+                return BadRequest("Korisnik ne postoji.");
+            
+            return Ok(new { sender });
 
         }
         catch (Exception e)
         {
-            return BadRequest("Greska" + e);
+            
+            return BadRequest(e.Message);
         }
     }
-    
+
     [HttpPost]
     [Route("getTransakcije")]
     public async Task<ActionResult> getTransakcije([FromBody] PinRequest request)

@@ -1,5 +1,6 @@
 public class TransferRequest{
-    public string? SenderPin { get; set; }
-    public string? ReceiverPin { get; set; }
+    public string? SenderAccount { get; set; }
+    public string? ReceiverAccount { get; set; }
     public decimal Iznos { get; set; }
+    public string? Svrha { get; set; }
 }
