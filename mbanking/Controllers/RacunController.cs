@@ -101,6 +101,7 @@ public async Task<ActionResult> transferNovca([FromBody] TransferRequest request
             datum = DateTime.Now,
             TekuciSender = sender.Racun?.brojRacuna,
             TekuciReceiver = receiver.Racun?.brojRacuna,
+            Svrha = request.Svrha,
             Racun = sender.Racun 
         };
 
@@ -113,6 +114,7 @@ public async Task<ActionResult> transferNovca([FromBody] TransferRequest request
             datum = DateTime.Now,
             TekuciSender = sender.Racun?.brojRacuna,
             TekuciReceiver = receiver.Racun?.brojRacuna,
+            Svrha = request.Svrha,
             Racun = receiver.Racun 
         };
 

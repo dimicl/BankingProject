@@ -25,9 +25,9 @@ export class PayComponent {
       SenderAccount: this.forma.SenderAccount,
       ReceiverAccount: this.forma.ReceiverAccount,
       Iznos: this.forma.Iznos,
-      Purpose: this.forma.Purpose
+      Svrha: this.forma.Purpose
     };
-  
+    debugger;
     this.http.put("https://localhost:7080/Racun/transfer", transferRequest).subscribe((res: any) => {
       if (res.transakcija) {
         console.log("Primljeno", res);

@@ -27,7 +27,7 @@ export class ProfileComponent {
       if(res.sredstva && res)
       {
         this.racun.sredstva = res.sredstva;
-        console.log("Uspesno", this.racun.sredstva);
+        
       }
       else{
         console.log("Greska");

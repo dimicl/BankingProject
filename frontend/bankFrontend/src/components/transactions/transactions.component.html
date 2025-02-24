@@ -1,7 +1,7 @@
     <div class="container-fluid d-flex flex-column justify-content-center align-items-center gap-5 col-lg-6 col-sm-12">
         <span class="display-5">List of transactions.</span>
         <div class="row justify-content-center">
-        <div class="col-12">
+        <div class="col-sm-12 col-lg-12">
         <table class="table">
         
             <tbody>
@@ -15,6 +15,7 @@
                     <td> {{ item.datum | date:'medium' }} </td>
                     <td> {{ item.tip  }} </td>
                     <td> {{ item.tekuciReceiver}}</td>
+                    <td> {{ item.svrha }} </td>
                 </tr>
             </tbody>
         </table>

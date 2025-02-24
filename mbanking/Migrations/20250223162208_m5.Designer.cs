@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebTemplate.Models;
 
@@ -11,9 +12,11 @@ using WebTemplate.Models;
 namespace WebTemplate.Migrations
 {
     [DbContext(typeof(BankaContext))]
-    partial class BankaContextModelSnapshot : ModelSnapshot
+    [Migration("20250223162208_m5")]
+    partial class m5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,31 +86,6 @@ namespace WebTemplate.Migrations
                     b.ToTable("Racuni");
                 });
 
-            modelBuilder.Entity("WebTemplate.Models.Stednja", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<decimal>("Cilj")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("Korisnikid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Naziv")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("Korisnikid");
-
-                    b.ToTable("Stednje");
-                });
-
             modelBuilder.Entity("WebTemplate.Models.Transakcija", b =>
                 {
                     b.Property<int>("id")
@@ -118,9 +96,6 @@ namespace WebTemplate.Migrations
 
                     b.Property<int?>("Racunid")
                         .HasColumnType("int");
-
-                    b.Property<string>("Svrha")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TekuciReceiver")
                         .HasColumnType("nvarchar(max)");
@@ -155,15 +130,6 @@ namespace WebTemplate.Migrations
                     b.Navigation("Racun");
                 });
 
-            modelBuilder.Entity("WebTemplate.Models.Stednja", b =>
-                {
-                    b.HasOne("WebTemplate.Models.Korisnik", "Korisnik")
-                        .WithMany("Stednje")
-                        .HasForeignKey("Korisnikid");
-
-                    b.Navigation("Korisnik");
-                });
-
             modelBuilder.Entity("WebTemplate.Models.Transakcija", b =>
                 {
                     b.HasOne("WebTemplate.Models.Racun", "Racun")
@@ -171,11 +137,6 @@ namespace WebTemplate.Migrations
                         .HasForeignKey("Racunid");
 
                     b.Navigation("Racun");
-                });
-
-            modelBuilder.Entity("WebTemplate.Models.Korisnik", b =>
-                {
-                    b.Navigation("Stednje");
                 });
 
             modelBuilder.Entity("WebTemplate.Models.Racun", b =>

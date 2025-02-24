@@ -1,0 +1,30 @@
+p{
+    font-size: 1.5em;
+}
+tr{
+    cursor: pointer;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+  }
+  
+  .grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .icon-container {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #1E3A8A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

@@ -17,5 +17,7 @@ namespace WebTemplate.Models
 
          [MaxLength(4)]
          public required string pin { get; set; } 
+
+         public List<Stednja>? Stednje { get; set; }
     }
 }
