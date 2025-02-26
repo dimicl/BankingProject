@@ -16,6 +16,7 @@ tr{
     flex-direction: column;
     align-items: center;
     text-align: center;
+    cursor: pointer;
   }
   
   .icon-container {
@@ -27,4 +28,55 @@ tr{
     justify-content: center;
     align-items: center;
   }
+
+  @media (max-width: 576px) { /* Cilja male ekrane (mobilne uređaje) */
+    .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+      padding-left: 0 !important; /* Uklanja padding-levo */
+    }
+  }
   
+
+  .container {
+    display: flex;
+    align-items: flex-end;  /* Poravnanje pravougaonika na dnu */
+    height: 300px;  /* Visina celog grafikona */
+    gap: 10px;  /* Razmak između pravougaonika */
+  }
+  
+  .box {
+    width: 60px;  /* Širina pravougaonika */
+    color: #1E3A8A;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;  /* Poravnanje broja na dnu pravougaonika */
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+    transition: height 0.5s ease-in-out; /* Animacija za promenu visine */
+  }
+  
+  .gap {
+    width: 10px;  /* Razmak između pravougaonika */
+  }
+  
+  .label {
+    font-size: 12px;
+    margin-bottom: 5px;  /* Razmak od dna */
+  }
+
+  input {
+    width: 60%;
+    padding: 5px;
+    border:1px solid #1E3A8A;
+    border-radius: 15px;
+  
+  }
+  input:active{
+    border:3px solid #1E3A8A;
+
+  }
+
+  div{
+    font-family: Arial, Helvetica, sans-serif;
+  }

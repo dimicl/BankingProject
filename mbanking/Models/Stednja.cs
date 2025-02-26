@@ -8,6 +8,8 @@ namespace WebTemplate.Models
         public int id { get; set; }
 
         public required string Naziv { get; set; }
+
+        public decimal Vrednost { get; set; }
         public decimal Cilj { get; set; }
 
         [JsonIgnore]

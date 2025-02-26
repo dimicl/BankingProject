@@ -1,46 +1,131 @@
-<div class="container-fluid border col-lg-6 d-flex flex-column gap-5">
-  <div style="cursor: pointer; border-bottom: 1px solid black;" class="d-flex justify-content-start gap-3 p-2 align-items-center">
-    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#1E3A8A" class="bi bi-plus-circle-fill" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-    </svg>
-    <div>Napravi svoju stednju</div>
-  </div>
+<div style="min-height: 85vh;">
+  <div class="container-fluid col-lg-6 d-flex flex-column gap-5 m-auto">
+    <div style="cursor: pointer; border-bottom: 1px solid black;" class="d-flex justify-content-start gap-3 p-2 align-items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#1E3A8A" class="bi bi-plus-circle-fill" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+      </svg>
+      <div>Create a saving. </div>
+    </div>
 
-  <div class="grid-container">
-    <div *ngFor="let item of lista" class="grid-item">
-      <div class="icon-container d-flex justify-content-center align-items-center" style="width: 100px; height: 100px; border-radius: 50%; background-color: #1E3A8A;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="white" class="bi bi-piggy-bank" viewBox="0 0 16 16">
-          <path d="M5 6.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.138-1.496A6.6 6.6 0 0 1 7.964 4.5c.666 0 1.303.097 1.893.273a.5.5 0 0 0 .286-.958A7.6 7.6 0 0 0 7.964 3.5c-.734 0-1.441.103-2.102.292a.5.5 0 1 0 .276.962"/>
-          <path fill-rule="evenodd" d="M7.964 1.527c-2.977 0-5.571 1.704-6.32 4.125h-.55A1 1 0 0 0 .11 6.824l.254 1.46a1.5 1.5 0 0 0 1.478 1.243h.263c.3.513.688.978 1.145 1.382l-.729 2.477a.5.5 0 0 0 .48.641h2a.5.5 0 0 0 .471-.332l.482-1.351c.635.173 1.31.267 2.011.267.707 0 1.388-.095 2.028-.272l.543 1.372a.5.5 0 0 0 .465.316h2a.5.5 0 0 0 .478-.645l-.761-2.506C13.81 9.895 14.5 8.559 14.5 7.069q0-.218-.02-.431c.261-.11.508-.266.705-.444.315.306.815.306.815-.417 0 .223-.5.223-.461-.026a1 1 0 0 0 .09-.255.7.7 0 0 0-.202-.645.58.58 0 0 0-.707-.098.74.74 0 0 0-.375.562c-.024.243.082.48.32.654a2 2 0 0 1-.259.153c-.534-2.664-3.284-4.595-6.442-4.595M2.516 6.26c.455-2.066 2.667-3.733 5.448-3.733 3.146 0 5.536 2.114 5.536 4.542 0 1.254-.624 2.41-1.67 3.248a.5.5 0 0 0-.165.535l.66 2.175h-.985l-.59-1.487a.5.5 0 0 0-.629-.288c-.661.23-1.39.359-2.157.359a6.6 6.6 0 0 1-2.157-.359.5.5 0 0 0-.635.304l-.525 1.471h-.979l.633-2.15a.5.5 0 0 0-.17-.534 4.65 4.65 0 0 1-1.284-1.541.5.5 0 0 0-.446-.275h-.56a.5.5 0 0 1-.492-.414l-.254-1.46h.933a.5.5 0 0 0 .488-.393m12.621-.857a.6.6 0 0 1-.098.21l-.044-.025c-.146-.09-.157-.175-.152-.223a.24.24 0 0 1 .117-.173c.049-.027.08-.021.113.012a.2.2 0 0 1 .064.199"/>
-        </svg>
+    <div class="grid-container">
+      <div *ngFor="let item of lista" class="grid-item" (click)="show(item)"  data-bs-toggle="modal" data-bs-target="#modalUplata">
+        <div class="icon-container d-flex justify-content-center align-items-center" style="width: 100px; height: 100px; border-radius: 50%; background-color: #1E3A8A;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="white" class="bi bi-piggy-bank" viewBox="0 0 16 16">
+            <path d="M5 6.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.138-1.496A6.6 6.6 0 0 1 7.964 4.5c.666 0 1.303.097 1.893.273a.5.5 0 0 0 .286-.958A7.6 7.6 0 0 0 7.964 3.5c-.734 0-1.441.103-2.102.292a.5.5 0 1 0 .276.962"/>
+            <path fill-rule="evenodd" d="M7.964 1.527c-2.977 0-5.571 1.704-6.32 4.125h-.55A1 1 0 0 0 .11 6.824l.254 1.46a1.5 1.5 0 0 0 1.478 1.243h.263c.3.513.688.978 1.145 1.382l-.729 2.477a.5.5 0 0 0 .48.641h2a.5.5 0 0 0 .471-.332l.482-1.351c.635.173 1.31.267 2.011.267.707 0 1.388-.095 2.028-.272l.543 1.372a.5.5 0 0 0 .465.316h2a.5.5 0 0 0 .478-.645l-.761-2.506C13.81 9.895 14.5 8.559 14.5 7.069q0-.218-.02-.431c.261-.11.508-.266.705-.444.315.306.815.306.815-.417 0 .223-.5.223-.461-.026a1 1 0 0 0 .09-.255.7.7 0 0 0-.202-.645.58.58 0 0 0-.707-.098.74.74 0 0 0-.375.562c-.024.243.082.48.32.654a2 2 0 0 1-.259.153c-.534-2.664-3.284-4.595-6.442-4.595M2.516 6.26c.455-2.066 2.667-3.733 5.448-3.733 3.146 0 5.536 2.114 5.536 4.542 0 1.254-.624 2.41-1.67 3.248a.5.5 0 0 0-.165.535l.66 2.175h-.985l-.59-1.487a.5.5 0 0 0-.629-.288c-.661.23-1.39.359-2.157.359a6.6 6.6 0 0 1-2.157-.359.5.5 0 0 0-.635.304l-.525 1.471h-.979l.633-2.15a.5.5 0 0 0-.17-.534 4.65 4.65 0 0 1-1.284-1.541.5.5 0 0 0-.446-.275h-.56a.5.5 0 0 1-.492-.414l-.254-1.46h.933a.5.5 0 0 0 .488-.393m12.621-.857a.6.6 0 0 1-.098.21l-.044-.025c-.146-.09-.157-.175-.152-.223a.24.24 0 0 1 .117-.173c.049-.027.08-.021.113.012a.2.2 0 0 1 .064.199"/>
+          </svg>
+        </div>
+        <p class="text-center" style="font-size: 1.em;">{{item.naziv}}</p>
+        
+      
       </div>
-      <p class="text-center">{{item.naziv}}</p>
+    </div>
+  </div>
+  <div class="container col-8 shadow-lg d-flex justify-content-center gap-5">
+    <div class="d-flex flex-column h-100 justify-content-end align-items-center">
+      <div class="box" [style.height]="getHeight('prihodi')" [style.width]="500"  [style.backgroundColor]="'#1E3A8A'">
+      </div>
+      <span>{{prihodi}} {{valuta}}</span>
+    </div>
+    <div class="d-flex flex-column  h-100 justify-content-end align-items-center">
+      <div class="box" [style.height]="getHeight('rashodi')" [style.backgroundColor]="'#1E3A8A'">
+      </div>
+      <span>{{rashodi}} {{valuta}}</span>
+      </div>
+  </div>
+</div>
+
+
+<div class="modal fade m-auto" id="modalUplata" tabindex="-1" aria-labelledby="modalUplataLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-center display-5" id="modelUplataLabel">Saving for {{ selected }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex flex-column gap-3">
+        <div class="text-center">
+          <p class="display-6"><strong>Amount</strong></p>
+          <input type="number" name="dodataVrednost" [(ngModel)]="this.dodataVrednost" placeholder="Enter amount">
+        </div> 
+        <div class="d-flex justify-content-around">
+          <div class="text-center d-flex align-items-center justify-content-center gap-2">
+            <div>Trenutno</div>
+            <div> {{this.now}} </div>
+          </div> 
+          <div class="text-center d-flex align-items-center justify-content-center gap-2">
+            <div>Goal</div>
+            <div>{{this.goal}}</div>
+          </div>  
+        </div>    
+        <div class="text-center">
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [style.width]="(this.now)/(this.goal) * 100 +'%'" aria-valuemin="0" aria-valuemax="100"> {{ (now/goal)*100}}%</div>
+          </div>
+        </div>  
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="dodaj()">Submit</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="removeStednja()">Remove</button>
+      </div>
     </div>
   </div>
 </div>
+
+
 
   
   <div class="modal fade m-auto" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Create new saving</h1>
+          <h1 class="modal-title fs-5 text-center display-5" id="exampleModalLabel">Create new saving</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body d-flex flex-column gap-3">
-          <div class="text-center">
-            <p class=""><strong>Saving's name</strong></p>
-            <input type="text" name="forma.naziv" [(ngModel)]="this.forma.naziv" placeholder="Enter saving's name">
+        <form #form="ngForm" class="needs-validation" novalidate>
+          <div class="modal-body d-flex flex-column gap-3">
+            <div class="text-center">
+              <p class="display-6"><strong>Saving's name</strong></p>
+              <input 
+                type="text" 
+                name="forma.naziv" 
+                [(ngModel)]="this.forma.naziv" 
+                #name="ngModel" 
+                required
+                [ngClass]="{'is-valid': name.valid && name.touched, 'is-invalid' : !name.valid && name.touched}" 
+                placeholder="Enter saving's name"
+              >
+              <div class="invalid-feedback">Name is required</div>
+            </div>
+        
+            <div class="text-center">
+              <p class="display-6"><strong>Goal</strong></p>
+              <input 
+                type="number" 
+                name="forma.cilj" 
+                [(ngModel)]="this.forma.cilj" 
+                [min]="5000"
+                required
+                [ngClass]="{'is-valid': form.controls['forma.cilj']?.valid && form.controls['forma.cilj']?.touched, 'is-invalid' : !form.controls['forma.cilj']?.valid && form.controls['forma.cilj']?.touched}" 
+                placeholder="Enter a goal saving."
+              >
+              <div class="invalid-feedback" *ngIf="form.controls['forma.cilj']?.errors?.['min']">Goal must be greater than 5000</div>
+              <div class="invalid-feedback" *ngIf="form.controls['forma.cilj']?.errors?.['required']">Goal is required</div>
+            </div>
           </div>
-          {{forma.naziv}}
-          <div class="text-center">
-            <p class=""><strong>Goal</strong></p>
-            <input type="text" name="forma.cilj" [(ngModel)]="this.forma.cilj" placeholder="Enter a goal saving.">
+        
+          <div class="modal-footer d-flex justify-content-center">
+            <button 
+              type="button" 
+              class="btn btn-primary btn-lg btn-block" 
+              data-bs-dismiss="modal" 
+              [disabled]="form.invalid" 
+              (click)="onSubmit()">
+              Submit
+            </button>
           </div>
-        </div>
-        <div class="modal-footer d-flex justify-content-center">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onSubmit()">Submit</button>
-        </div>
+        </form>
+        
       </div>
     </div>
   </div>

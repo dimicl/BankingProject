@@ -18,10 +18,26 @@ export class TransactionsComponent {
   valuta = localStorage.getItem("valuta");
   http = inject(HttpClient);
 
+  
   constructor() {
+    var prihodi = 0;
+    var rashodi = 0;
     this.http.post("https://localhost:7080/Racun/getTransakcije", { Pin: this.pin }).subscribe((res: any) => {
       if (res.transakcije && res) {
         this.transakcije = Array.isArray(res.transakcije) ? res.transakcije : Object.values(res.transakcije);
+        console.log("Transakcije", this.transakcije);
+        this.transakcije.forEach((item)=>{
+          if(item.tip == "Poslato"){
+            rashodi += item.iznos;
+          }
+          else {
+            prihodi += item.iznos;
+          }
+        });
+        localStorage.setItem("prihodi", prihodi.toString());
+        localStorage.setItem("rashodi", rashodi.toString());
+
+
         this.transakcije.forEach(item => {
           let tekuciRec = item.tekuciReceiver;
           let tekuciSnd = item.tekuciSender;
