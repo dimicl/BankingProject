@@ -1,0 +1,36 @@
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+}
+h1 {
+    color: #121314;
+}
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+li {
+    margin-bottom: 10px;
+}
+.container {
+    max-width: 900px;
+    margin-top: 50px;
+}
+.section-header {
+    color: #121314;
+    font-size: 1.25rem;
+}
+.section-content {
+    margin-bottom: 30px;
+}
+.email-link {
+    color: #121314;
+    text-decoration: none;
+}
+.email-link:hover {
+    text-decoration: underline;
+}

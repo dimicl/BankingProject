@@ -1,18 +1,21 @@
-<div class="container col-12 d-flex flex-column justify-content-center align-items-center gap-5" style="min-height: 85vh;">
-    <div class="d-flex justify-content-center align-items-left flex-column col-lg-4 col-sm-6 gap-2">
-        <h5>Amount</h5>
-        <input type="text" [(ngModel)]="this.forma.Iznos" />
-        
+<form #paymentForm="ngForm" class="container col-12 d-flex flex-column justify-content-center align-items-center gap-5" style="min-height: 85vh;">
+    <div data-aos="fade-in-down" data-aos-duration="700" data-aos-delay="200" class="d-flex justify-content-center align-items-center flex-column col-lg-4 col-sm-6 gap-2">
+      <h3 class="display-6">Create a payment.</h3>
     </div>
-    <div class="d-flex justify-content-center align-items-left flex-column col-lg-4 col-sm-2 gap-2">
-        <h5>Receiver's Account</h5>
-        <input type="text" placeholder="" [(ngModel)]="this.forma.ReceiverAccount">
+    <div data-aos="zoom-in-right" data-aos-duration="800" data-aos-delay="300" class="d-flex justify-content-center align-items-left flex-column col-lg-4 col-sm-6 gap-2">
+      <h5>Amount</h5>
+      <input type="number" [(ngModel)]="forma.Iznos" name="Iznos" required />
     </div>
-    <div class="d-flex justify-content-center align-items-left flex-column col-lg-4 col-sm-6 gap-2">
-        <h5>Purpose of payment</h5>
-        <input type="text" placeholder="" [(ngModel)]="this.forma.Purpose">
+    <div data-aos="zoom-in-right" data-aos-duration="900" data-aos-delay="400" class="d-flex justify-content-center align-items-left flex-column col-lg-4 col-sm-2 gap-2">
+      <h5>Receiver's Account</h5>
+      <input type="text" [(ngModel)]="forma.ReceiverAccount" name="ReceiverAccount" required />
     </div>
-    <div class="text-lg-center text-sm-left col-4 gap-2">
-        <button type="button" class="btn btn-outline-primary col-lg-6 col-12" (click)="onSubmit()">Send</button>
+    <div data-aos="zoom-in-right" data-aos-duration="1000" data-aos-delay="500" class="d-flex justify-content-center align-items-left flex-column col-lg-4 col-sm-6 gap-2">
+      <h5>Purpose of payment</h5>
+      <input type="text" [(ngModel)]="forma.Purpose" name="Purpose" required />
     </div>
-</div>
+    <div data-aos="flip-right" data-aos-duration="1200" class="text-lg-center text-sm-left col-4 gap-2">
+      <button type="button" class="btn btn-outline-primary col-lg-6 col-12" (click)="onSubmit(paymentForm)">Pay</button>
+    </div>
+</form>
+  

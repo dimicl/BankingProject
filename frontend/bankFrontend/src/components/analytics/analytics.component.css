@@ -29,40 +29,37 @@ tr{
     align-items: center;
   }
 
-  @media (max-width: 576px) { /* Cilja male ekrane (mobilne uređaje) */
+  @media (max-width: 576px) { 
     .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
-      padding-left: 0 !important; /* Uklanja padding-levo */
+      padding-left: 0 !important; 
     }
   }
   
 
   .container {
     display: flex;
-    align-items: flex-end;  /* Poravnanje pravougaonika na dnu */
-    height: 300px;  /* Visina celog grafikona */
-    gap: 10px;  /* Razmak između pravougaonika */
+    align-items: flex-end;  
+    height: 300px;  
+    gap: 10px;  
   }
   
   .box {
-    width: 60px;  /* Širina pravougaonika */
+    width: 40px;  
+    height: 0;
     color: #1E3A8A;
     display: flex;
     justify-content: center;
-    align-items: flex-end;  /* Poravnanje broja na dnu pravougaonika */
+    align-items: flex-end;  
     font-size: 14px;
     text-align: center;
     padding: 5px;
     box-sizing: border-box;
-    transition: height 0.5s ease-in-out; /* Animacija za promenu visine */
-  }
-  
-  .gap {
-    width: 10px;  /* Razmak između pravougaonika */
+    animation: grow-rect 5s ease-in-out forwards;
   }
   
   .label {
     font-size: 12px;
-    margin-bottom: 5px;  /* Razmak od dna */
+    margin-bottom: 5px;  
   }
 
   input {
@@ -80,3 +77,30 @@ tr{
   div{
     font-family: Arial, Helvetica, sans-serif;
   }
+
+  .animated-line{
+    width: 0;
+    height: 2px;
+    background-color: black;
+    border-radius: 2px;
+    animation: grow-line 2s ease-in-out forwards;
+}
+
+
+@keyframes grow-line{
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes grow-rect{
+  0% {
+      height: 0;
+  }
+  100% { 
+      height: var(--height, 0);
+  }
+}

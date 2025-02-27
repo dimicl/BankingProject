@@ -5,7 +5,8 @@ import { FormsModule } from '@angular/forms'
 import { Router, RouterLink } from '@angular/router';
 import { catchError } from 'rxjs';
 import { throwError } from 'rxjs';
-
+import * as AOS from 'aos';
+import 'aos/dist/aos.css';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,15 @@ import { throwError } from 'rxjs';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  ngOnInit(): void{
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      AOS.init({
+        duration: 1000,
+        easing: 'ease-in-out',
+        once: true
+      });
+    }
+  }
 
   pin: string[] = ['', '', '', ''];
   fullPin: string = "";

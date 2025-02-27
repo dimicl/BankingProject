@@ -8,6 +8,8 @@ import { authGuard } from '../components/guard/auth.guard';
 import { PayComponent } from '../components/pay/pay.component';
 import { AdminComponent } from '../components/admin/admin.component';
 import { AnalyticsComponent } from '../components/analytics/analytics.component';
+import { PrivacyComponent } from '../components/privacy/privacy.component';
+import { TermsComponent } from '../components/terms/terms.component';
 
 export const routes: Routes = [
     {
@@ -52,6 +54,14 @@ export const routes: Routes = [
             {
                 path: 'analytics',
                 component: AnalyticsComponent
+            },
+            {
+                path: 'privacy',
+                component: PrivacyComponent
+            },
+            {
+                path: 'terms',
+                component: TermsComponent   
             }
         ]
     }

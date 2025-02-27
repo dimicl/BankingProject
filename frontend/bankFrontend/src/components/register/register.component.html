@@ -5,11 +5,11 @@
   <div class="container d-flex w-100 h-100 justify-content-center align-items-center">
     <div class="row w-100 h-100 align-items-center">
       
-      <div class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center">
+      <div data-aos="zoom" data-aos-duration="800" data-aos-delay="150" class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center">
         <img src="reg.svg" class="img-fluid" style="max-width: 80%;" alt="">
       </div>
 
-      <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center h-100">
+      <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="50" class="col-12 col-lg-6 d-flex justify-content-center align-items-center h-100">
         <div class="w-100 p-4 p-lg-5 bg-white rounded-4 shadow" style="max-width: 500px;">
           <h2 class="text-center lato-light typewriter" style="font-size: 30px;">Create an account</h2>
           <form (ngSubmit)="onSubmit()" #form="ngForm" class="needs-validation w-100" novalidate>

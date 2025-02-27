@@ -1,9 +1,9 @@
 <div class="d-flex flex-lg-row flex-sm-column w-100" style="background-image: url('background.svg'); background-repeat: no-repeat; 
 background-size: cover;
  min-height: 100vh">
-<div class="container d-flex flex-column justify-content-end align-items-center m-auto">
+<div data-aos="fade-right" data-aos-duration="800" data-aos-delay="250" class="container d-flex flex-column justify-content-end align-items-center m-auto">
     <div class="login-box d-flex flex-column justify-content-center align-items-center w-100">
-      <h2 class="lato-light typewriter">Enter your pin.</h2>
+      <h2 class="lato-light typewriter">Enter your pin</h2>
       <form (ngSubmit)="onSubmit()">
         <div class="d-flex justify-content-center gap-2 mt-2 ">
           @for (item of pin; track $index) {
@@ -28,8 +28,8 @@ background-size: cover;
       </p>
     </div>
   </div>
-  <div class="w-50 d-none d-lg-flex justify-content-center align-items-center">
-    <img src="login.svg" width="600" height="600" alt="">
+  <div data-aos="zoom" data-aos-duration="600" data-aos-delay="150" class="w-50 d-none d-lg-flex justify-content-center align-items-center">
+    <img src="login.svg" width="500" height="500" alt="">
   </div>
 </div>
  

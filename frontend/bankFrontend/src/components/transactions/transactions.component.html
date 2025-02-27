@@ -1,24 +1,56 @@
-    <div class="container-fluid d-flex flex-column justify-content-center align-items-center gap-5 col-lg-6 col-sm-12" style="min-height: 85vh;">
-        <span class="display-5">List of transactions.</span>
-        <div class="row justify-content-center">
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center gap-5 col-lg-6 col-sm-12" style="min-height: 85vh;">
+    <div data-aos="zoom-out" class="display-5">List of transactions.</div>
+    <div class="row justify-content-center">
         <div class="col-sm-12 col-lg-12">
-        <table class="table">
-        
-            <tbody>
-                <tr *ngFor="let item of transakcije">
-                    <td [ngClass]="{'text-danger' : item.tip == 'Poslato', 'text-success' : item.tip == 'Primljeno'}"> 
-                        <span *ngIf="item.tip == 'Poslato'"></span> 
-                        <span *ngIf="item.tip == 'Primljeno'">+</span> 
-                        {{item.iznos}} {{this.valuta}} 
-                    
-                    </td>
-                    <td> {{ item.datum | date:'medium' }} </td>
-                    <td> {{ item.tip  }} </td>
-                    <td> {{ item.tekuciReceiver}}</td>
-                    <td> {{ item.svrha }} </td>
-                </tr>
-            </tbody>
-        </table>
+            <table data-aos="zoom" data-aos-anchor-placement="bottom-bottom" data-aos-duration="1500" data-aos-delay="400" class="table">
+                <tbody>
+                    <tr *ngFor="let item of transakcije.slice(-10)">
+                        <td [ngClass]="{'text-danger' : item.tip == 'Poslato', 'text-success' : item.tip == 'Primljeno'}"> 
+                            <span *ngIf="item.tip == 'Poslato'"></span> 
+                            <span *ngIf="item.tip == 'Primljeno'">+</span> 
+                            {{item.iznos}} {{this.valuta}} 
+                        </td>
+                        <td>{{ item.datum | date:'medium' }}</td>
+                        <td>{{ item.tip }}</td>
+                        <td>{{ item.tekuciReceiver }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+        <div class="text-center m-2">    
+            <button class="btn btn-outline-primary mt-3" data-bs-toggle="modal" data-bs-target="#modalSveTransakcije" data-aos="flip-up" data-aos-delay="1300">
+            See More
+            </button>
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="modalSveTransakcije" tabindex="-1" aria-labelledby="modalSveTransakcijeLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalSveTransakcijeLabel">Sve transakcije</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+        <table class="table">
+          <tbody>
+            <tr *ngFor="let item of lista">
+              <td [ngClass]="{'text-danger' : item.tip == 'Poslato', 'text-success' : item.tip == 'Primljeno'}">
+                <span *ngIf="item.tip == 'Poslato'"></span>
+                <span *ngIf="item.tip == 'Primljeno'">+</span>
+                {{ item.iznos }} {{ this.valuta }}
+              </td>
+              <td>{{ item.datum | date:'medium' }}</td>
+              <td>{{ item.tip }}</td>
+              <td>{{ item.tekuciReceiver }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-center p-2">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>  
+    </div>
+  </div>
+</div>

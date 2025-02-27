@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import * as AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 @Component({
   selector: 'app-register',
@@ -11,6 +14,19 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+
+  ngOnInit(): void{
+      if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+        AOS.init({
+          duration: 1000,
+          easing: 'ease-in-out',
+          once: true
+        });
+      }
+    }
+
+    
+
     korisnik = {
       ime: "",
       prezime:"",

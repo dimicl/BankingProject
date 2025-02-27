@@ -1,34 +1,26 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
+import * as AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterLink,RouterOutlet],
+  imports: [RouterLink,RouterOutlet, NavbarComponent, FooterComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-    user = {
-      ime: localStorage.getItem("ime"),
-      prezime: localStorage.getItem("prezime"),
-      pin : localStorage.getItem("pin")
+   ngOnInit(): void{
+      if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+        AOS.init({
+          duration: 1000,
+          easing: 'ease-in-out',
+          once: true
+        });
+      }
     }
-    racun = {
-      brojR : localStorage.getItem("brojR"),
-      sredstva : Number(localStorage.getItem("sredstva")),
-      valuta : localStorage.getItem("valuta")
-    }
-    router = inject(Router);
-    onSubmit()
-    {
-      localStorage.removeItem("ime");
-      localStorage.removeItem("prezime");
-      localStorage.removeItem("pin");
-      localStorage.removeItem("brojR");
-      localStorage.removeItem("sredstva");
-      localStorage.removeItem("valuta");
-
-      this.router.navigateByUrl("login");
-
-    }
+    
 }

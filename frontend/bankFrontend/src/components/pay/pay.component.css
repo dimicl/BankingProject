@@ -3,6 +3,7 @@ input {
     padding: 5px;
     border:1px solid #1E3A8A;
     border-radius: 15px;
+    padding-left: 15px;
   
   }
   input:active{
